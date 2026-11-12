@@ -33,8 +33,21 @@ densified by calamine while the workbook is opened, before any limit can be chec
 
 ```bash
 maturin build --release        # wheel in target/wheels/ (abi3: one wheel per platform for Python 3.10+)
-cargo clippy --all-targets && cargo fmt --check
 ```
+
+Checks run locally before a commit (there is no CI on push; GitHub Actions only builds a release):
+
+```bash
+cargo fmt --check && cargo clippy --release --all-targets -- -D warnings
+uv sync && uv run maturin develop --release && uv run pytest -q tests
+```
+
+## Release
+
+Push a tag `v<version>` (the version in `Cargo.toml` and `pyproject.toml`): `.github/workflows/release.yml` builds
+abi3 wheels for Linux (x86_64, aarch64), macOS (x86_64, arm64) and Windows (x64) and an sdist, attaches them to a
+GitHub release and publishes the package index https://zhijieq.github.io/sheet-reader/simple. The `github-pages`
+environment allows deployments from `v*` tags.
 
 ## License
 
