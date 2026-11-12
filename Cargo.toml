@@ -1,0 +1,21 @@
+[package]
+name = "sheet-reader"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Read spreadsheets (xlsx, xlsm, xlsb, xls, ods) into Python lists with row and column limits checked while reading, built on calamine"
+repository = "https://github.com/ZhijieQ/sheet-reader"
+readme = "README.md"
+
+[lib]
+name = "sheet_reader"
+crate-type = ["cdylib"]
+
+[dependencies]
+calamine = { version = "0.38.0", features = ["chrono"] }
+chrono = { version = "0.4", default-features = false }
+pyo3 = { version = "0.30.1", features = ["extension-module", "abi3-py310", "chrono"] }
+
+[profile.release]
+lto = true
+codegen-units = 1

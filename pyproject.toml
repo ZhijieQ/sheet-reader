@@ -1,0 +1,18 @@
+[build-system]
+requires = ["maturin>=1.16,<2"]
+build-backend = "maturin"
+
+[project]
+name = "sheet-reader"
+version = "0.1.0"
+description = "Read spreadsheets (xlsx, xlsm, xlsb, xls, ods) into Python lists with row and column limits checked while reading, built on calamine"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+classifiers = ["Programming Language :: Rust", "Programming Language :: Python :: Implementation :: CPython"]
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+
+[dependency-groups]
+dev = ["pytest>=9", "openpyxl>=3.1.5", "python-calamine>=0.9.1"]
