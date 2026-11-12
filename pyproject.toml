@@ -15,4 +15,4 @@ classifiers = ["Programming Language :: Rust", "Programming Language :: Python :
 features = ["pyo3/extension-module"]
 
 [dependency-groups]
-dev = ["pytest>=9", "openpyxl>=3.1.5", "python-calamine>=0.9.1"]
+dev = ["pytest>=9", "openpyxl>=3.1.5", "python-calamine>=0.9.1; python_version >= '3.11'"]
